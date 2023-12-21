@@ -8,7 +8,7 @@
     "body-parser": "*",
     "express": "*",
     "prettier": "*",
-    "request": "2.55.0",
+    "request": "2.88.2",
     "threads": "*"
   },
   "devDependencies": {
