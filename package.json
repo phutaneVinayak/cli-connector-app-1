@@ -1,0 +1,17 @@
+{
+  "name": "local_test_build",
+  "version": "1.0.0",
+  "description": "local_test_build",
+  "dependencies": {
+    "@godaddy/terminus": "*",
+    "@webmethodsio/cli-sdk": "*",
+    "body-parser": "*",
+    "express": "*",
+    "prettier": "*",
+    "request": "2.55.0",
+    "threads": "*"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0"
+  }
+}

@@ -1,0 +1,65 @@
+name: Linting
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    
+jobs:
+  run-linters:
+    name: Run Linters
+    runs-on: [ self-hosted ]
+    
+    strategy:
+      matrix:
+        node-version: [18.x]
+    
+    steps:
+      - name: Checkout out Git Repo
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js version
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      
+      # ESLint and Prettier must be in package.json
+      - name: Install Node.js dependancies
+        run: npm i
+        
+      - name: Run Linter
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          prettier: ture
+
+  code-analyse:
+    name: Analyze Nodejs Code
+    runs-on: [ self-hosted ]
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ["javascript"]
+
+    steps:
+      - uses: step-security/harden-runner@eb238b55efaa70779f274895e782ed17c84f2895 # v2.6.1
+        with:
+          egress-policy: audit
+      
+      - name: Checkout out Git Repo
+        uses: actions/checkout@v3
+
+      # Initializes the CodeQL tools for scanning.
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"

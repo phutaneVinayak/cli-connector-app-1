@@ -1,0 +1,17 @@
+{
+  "name": "local_test_build",
+  "description": "local_test_build",
+  "triggers": [
+    "/v1/tg_one"
+  ],
+  "actions": [
+    "/v1/local_act_1"
+  ],
+  "version": 1,
+  "auth_type": "apikey",
+  "doc_link": "",
+  "appId": "487686a4-07c7-4344-8dd0-d3855fcc8a10",
+  "guid": "6d17fe16-f594-4e59-adaf-30a124e1a1e4",
+  "connectionUid": "local-test-build-HJDA6FcoX",
+  "github_url": "https://github.softwareag.com/vvis/cli-487686a4-07c7-4344-8dd0-d3855fcc8a10-1"
+}
