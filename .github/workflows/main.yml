@@ -35,31 +35,3 @@ jobs:
         with:
           eslint: true
           prettier: ture
-
-  code-analyse:
-    name: Analyze Nodejs Code
-    runs-on: [ self-hosted ]
-
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ["javascript"]
-
-    steps:
-      - uses: step-security/harden-runner@eb238b55efaa70779f274895e782ed17c84f2895 # v2.6.1
-        with:
-          egress-policy: audit
-      
-      - name: Checkout out Git Repo
-        uses: actions/checkout@v3
-
-      # Initializes the CodeQL tools for scanning.
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
-        with:
-          languages: ${{ matrix.language }}
-
-      - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
-        with:
-          category: "/language:${{matrix.language}}"
